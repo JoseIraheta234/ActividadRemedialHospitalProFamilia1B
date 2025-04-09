@@ -8,20 +8,20 @@ const loginController = {};
 
 loginController.login = async (req,res) => {
 
-    const{email, password} = req.body;
+    const{correo, contraseña} = req.body;
     try{
         let userFound;
         let userType;
-        if(email === config.emailAdmin.email && password === config.emailAdmin.password){
+        if(correo === config.emailAdmin.email && contraseña === config.emailAdmin.password){
             userType = "Admin"; 
             userFound = {_id: "Admin"}
         } else {
 
-            userFound = await PacientesModel.findOne({email});
+            userFound = await PacientesModel.findOne({correo});
             userType = "Paciente";
 
             if(!userFound){
-                userFound = await DoctoresModel.findOne({email});
+                userFound = await DoctoresModel.findOne({correo});
                 userType = "Doctor";
             }
         }
@@ -31,7 +31,7 @@ loginController.login = async (req,res) => {
         }
 
         if(userType !== "Admin"){
-            const isMatch = bcryptjs.compare(password, userFound.password);
+            const isMatch = bcryptjs.compare(contraseña, userFound.contraseña);
             if(!isMatch){
                 return res.json({message: "Invalid password"})
             }
