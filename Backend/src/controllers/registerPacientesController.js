@@ -9,7 +9,7 @@ import {config} from "../config.js";
 const registerPacienteController = {};
 
 registerPacienteController.registerPacientes = async (req, res) => {
-    const { name,edad,correo,contraseña,telefono,isVerified } = req.body;
+    const { nombre,edad,correo,contraseña,telefono,isVerified } = req.body;
 
     try {
         // Check if the email already exists
@@ -22,7 +22,7 @@ registerPacienteController.registerPacientes = async (req, res) => {
         const hashedPassword = await bcrypt.hash(contraseña, 10);
         // Create a new client
         const newPaciente = new Pacientes({
-            name,
+            nombre,
             edad,
             correo,
             contraseña: hashedPassword,

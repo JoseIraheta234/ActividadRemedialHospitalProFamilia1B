@@ -31,4 +31,4 @@ const PacientesShema = new Schema({
 })
 
 
-export default model("pacientes", PacientesShema)
+export default model("Pacientes", PacientesShema)

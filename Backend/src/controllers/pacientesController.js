@@ -21,8 +21,8 @@ pacienteController.deletePacientes = async(req,res) =>{
 //Update
 
 pacienteController.updatePacientes = async(req,res) =>{
-    const {name,edad,correo,contraseña,telefono,isVerified} = req.body;
-    const updatePaciente= await Pacientes.findByIdAndUpdate(req.params.id,{name,edad,correo,contraseña,telefono,isVerified},{new: true})
+    const {nombre,edad,correo,contraseña,telefono,isVerified} = req.body;
+    const updatePaciente= await Pacientes.findByIdAndUpdate(req.params.id,{nombre,edad,correo,contraseña,telefono,isVerified},{new: true})
     res.json({message: "Paciente updated"})
 
 }

@@ -1,7 +1,7 @@
 import {Schema, model} from "mongoose";
-
+ 
 const CitasShema = new Schema({
-
+ 
     fecha: {
         type: String,
         require: true
@@ -15,15 +15,17 @@ const CitasShema = new Schema({
         type: String
     },
     doctorAsignado: {
-        type: String
+        type: String,
+        ref: "doctores"
     },
     pacienteAsignado: {
-        type: String
+        type: String,
+        ref: "Pacientes"
     }
 },{
     timestamps: true,
     strict: false
 })
-
-
+ 
+ 
 export default model("citas", CitasShema)
